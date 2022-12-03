@@ -41,17 +41,24 @@ renderer.setSize( window.innerWidth-100, window.innerHeight-100 );
 document.body.appendChild( renderer.domElement );
 
 const loader = new GLTFLoader();
-loader.load( 'globus.glb', function ( gltf ) {
+ loader.load( 'globus.glb', function ( gltf ) {
+ 	scene.add( gltf.scene );
+ }, undefined, function ( error ) {
+ 	console.error( error );
+ } );
+loader.load( 'stecknadel.glb', function ( gltf ) {
 	scene.add( gltf.scene );
 }, undefined, function ( error ) {
 	console.error( error );
 } );
 
 
+
 const controls = new OrbitControls( camera, renderer.domElement );
 
 //controls.update() must be called after any manual changes to the camera's transform
-camera.position.set( 8, -2, 3);
+// camera.position.set( -2, 8, -10);
+camera.position.set( -2, 8, -10);
 controls.update();
 
 function animate() {
@@ -62,8 +69,8 @@ function animate() {
 }
 animate()
 
- window.addEventListener( 'pointerup', function () {
+//  window.addEventListener( 'pointerup', function () {
 
-    this.alert("test") ;
+//     this.alert("Deutschland Hauptstadt: Berlin") ;
  
-  } );
+//   } );
