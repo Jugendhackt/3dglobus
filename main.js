@@ -45,3 +45,9 @@ function animate() {
 
 }
 animate()
+
+window.addEventListener( 'pointerdown', function () {
+
+   this.alert("test") ;
+
+} );
