@@ -124,10 +124,10 @@ function animate() {
 	renderer.render( scene, camera );
 }
 animate();
- window.addEventListener( 'pointerup', function () {
+ window.addEventListener( 'pointerup', function (ev) {
 let modal = document.getElementById("myModal");
+if (ev.button == 2)
 	modal.style.display = "block";
-
  });
 	function checkIntersection( x, y ) {
 	if ( mesh === undefined ) return;
