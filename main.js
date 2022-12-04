@@ -50,7 +50,7 @@ const intersection = {
 const loader = new GLTFLoader();
  loader.load( 'globus.glb', function ( gltf ) {
  	scene.add( gltf.scene );
-	 mesh = gltf.scene.children[ 0 ];
+	 mesh = gltf.scene;
  }, undefined, function ( error ) {
  	console.error( error );
  } );
@@ -58,6 +58,11 @@ const loader = new GLTFLoader();
  let raycaster = new THREE.Raycaster();
  const intersects = [];
 loader.load( 'stecknadel deutschland.glb', function ( gltf ) {
+	scene.add( gltf.scene );
+}, undefined, function ( error ) {
+	console.error( error );
+} );
+loader.load( 'stecknadel japan.glb', function ( gltf ) {
 	scene.add( gltf.scene );
 }, undefined, function ( error ) {
 	console.error( error );
@@ -79,24 +84,19 @@ function animate() {
 	renderer.render( scene, camera );
 }
 animate()
-
-//  window.addEventListener( 'pointerup', function () {
-
-//     this.alert("Deutschland Hauptstadt: Berlin") ;
- 
-//   } );
+ window.addEventListener( 'pointerup', function () {
+this.alert("Deutschland Hauptstadt: Berlin") ;   } );
 function checkIntersection( x, y ) {
 	if ( mesh === undefined ) return;
 	mouse.x = ( x / window.innerWidth ) * 2 - 1;
 	mouse.y = - ( y / window.innerHeight ) * 2 + 1;
 	raycaster.setFromCamera( mouse, camera );
-	const intersectedObjects = raycaster.intersectObjects( scene.children );
+	const intersectedObjects = raycaster.intersectObject( scene.children[ 4 ],false,intersects );
 	console.log("checkintersection: "+intersectedObjects.length) ;
 }
 window.addEventListener( 'pointerup', function ( event ) {
 
-	
-		checkIntersection( event.clientX, event.clientY );
+			checkIntersection( event.clientX, event.clientY );
 
 		if ( intersection.intersects ) popup();
 
