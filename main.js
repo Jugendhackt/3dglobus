@@ -67,6 +67,16 @@ loader.load( 'stecknadel japan.glb', function ( gltf ) {
 }, undefined, function ( error ) {
 	console.error( error );
 } );
+loader.load( 'stecknadel Mexiko.glb', function ( gltf ) {
+	scene.add( gltf.scene );
+}, undefined, function ( error ) {
+	console.error( error );
+} );
+loader.load( 'stecknadel Ägypten.glb', function ( gltf ) {
+	scene.add( gltf.scene );
+}, undefined, function ( error ) {
+	console.error( error );
+} );
 
 
 
