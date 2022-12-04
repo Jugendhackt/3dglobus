@@ -92,6 +92,21 @@ loader.load( 'stecknadel Vereinigtes Königreich.glb', function ( gltf ) {
 }, undefined, function ( error ) {
 	console.error( error );
 } );
+loader.load( 'stecknadel Griechenland.glb', function ( gltf ) {
+	scene.add( gltf.scene );
+}, undefined, function ( error ) {
+	console.error( error );
+} );
+loader.load( 'stecknadel Türkei.glb', function ( gltf ) {
+	scene.add( gltf.scene );
+}, undefined, function ( error ) {
+	console.error( error );
+} );
+loader.load( 'stecknadel Marokko.glb', function ( gltf ) {
+	scene.add( gltf.scene );
+}, undefined, function ( error ) {
+	console.error( error );
+} );
 
 
 
