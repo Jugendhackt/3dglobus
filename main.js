@@ -40,13 +40,24 @@ const renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth-100, window.innerHeight-100 );
 document.body.appendChild( renderer.domElement );
 
+let mesh;
+const intersection = {
+	intersects: false,
+	point: new THREE.Vector3(),
+	normal: new THREE.Vector3()
+};
+
 const loader = new GLTFLoader();
  loader.load( 'globus.glb', function ( gltf ) {
  	scene.add( gltf.scene );
+	 mesh = gltf.scene.children[ 0 ];
  }, undefined, function ( error ) {
  	console.error( error );
  } );
-loader.load( 'stecknadel.glb', function ( gltf ) {
+ const mouse = new THREE.Vector2();
+ let raycaster = new THREE.Raycaster();
+ const intersects = [];
+loader.load( 'stecknadel deutschland.glb', function ( gltf ) {
 	scene.add( gltf.scene );
 }, undefined, function ( error ) {
 	console.error( error );
@@ -74,3 +85,24 @@ animate()
 //     this.alert("Deutschland Hauptstadt: Berlin") ;
  
 //   } );
+function checkIntersection( x, y ) {
+	if ( mesh === undefined ) return;
+	mouse.x = ( x / window.innerWidth ) * 2 - 1;
+	mouse.y = - ( y / window.innerHeight ) * 2 + 1;
+	raycaster.setFromCamera( mouse, camera );
+	const intersectedObjects = raycaster.intersectObjects( scene.children );
+	console.log("checkintersection: "+intersectedObjects.length) ;
+}
+window.addEventListener( 'pointerup', function ( event ) {
+
+	
+		checkIntersection( event.clientX, event.clientY );
+
+		if ( intersection.intersects ) popup();
+
+
+
+} );
+function popup() {
+	alert("platzhalter");
+}
