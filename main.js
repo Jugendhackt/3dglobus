@@ -83,18 +83,27 @@ function animate() {
 	controls.update();
 	renderer.render( scene, camera );
 }
-animate()
+animate();
  window.addEventListener( 'pointerup', function () {
-this.alert("Deutschland Hauptstadt: Berlin") ;   } );
-function checkIntersection( x, y ) {
+let modal = document.getElementById("myModal");
+	modal.style.display = "block";
+
+ });
+	function checkIntersection( x, y ) {
 	if ( mesh === undefined ) return;
 	mouse.x = ( x / window.innerWidth ) * 2 - 1;
 	mouse.y = - ( y / window.innerHeight ) * 2 + 1;
 	raycaster.setFromCamera( mouse, camera );
-	const intersectedObjects = raycaster.intersectObject( scene.children[ 4 ],false,intersects );
-	console.log("checkintersection: "+intersectedObjects.length) ;
+	const intersectedObjects = raycaster.intersectObjects( scene.children);
+	console.log("intersected objects: " + intersectedObjects.length);
+	if(intersectedObjects.length > 0) {
+		for(let i = 0; i < intersectedObjects.length; i++) {
+			console.log("intersect " + intersectedObjects[i].Vector3 + "\n")
+		}
+	}
+
 }
-window.addEventListener( 'pointerup', function ( event ) {
+window.addEventListener( 'mousemove', function ( event ) {
 
 			checkIntersection( event.clientX, event.clientY );
 
@@ -103,6 +112,26 @@ window.addEventListener( 'pointerup', function ( event ) {
 
 
 } );
+
+
+// Image popup:
 function popup() {
 	alert("platzhalter");
 }
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var modal = document.getElementById("myModal");
+var canvas = document.getElementById("c")
+var captionText = document.getElementById("caption");
+canvas.onclick = function(){
+  modal.style.display = "block";
+}
+
+// Get the <span> element that closes the modal
+var span = document.getElementById("close");
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() { 
+  modal.style.display = "none";
+}
+
